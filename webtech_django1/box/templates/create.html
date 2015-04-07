@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block jumbotron %}
+	<h1>Create</h1>
+{% endblock %}
+
+{% block content %}
+<p>
+	<form method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+	<input role="button" class="btn btn-lg btn-primary btn-block" type="submit" value="Create" />
+	</form>
+</p>
+<p><a role="button" class="btn btn-lg btn-info btn-block" href="{% url 'box:index' %}">Back to box index</a></p>
+{% endblock %}

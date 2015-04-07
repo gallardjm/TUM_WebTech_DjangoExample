@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block jumbotron %}
+	<h1>Read</h1>
+{% endblock %}
+
+{% block content %}
+<p>You are looking at box #{{ box.id }}:</p>
+<ul>
+	<li>Tag: {{box.tag}}</li>
+	<li>Storage: {{box.storage}}</li>
+</ul>
+<br>
+<p><a role="button" class="btn btn-lg btn-success btn-block" href="{% url 'box:update' box.id %}">Update</a></p>
+<p>
+<form action="{% url 'box:delete' %}" method="post">
+	{% csrf_token %} <!-- This token ensure that no CSRF attack is possible to delete a box using an external form -->
+	<input hidden name="box_id" value={{box.id}} />
+	<input role="button" class="btn btn-lg btn-danger btn-block" type="submit" value="Delete" />
+</form>
+</p>
+<p><a role="button" class="btn btn-lg btn-info btn-block" href="{% url 'box:index' %}">Back to box index</a></p>
+{% endblock %}

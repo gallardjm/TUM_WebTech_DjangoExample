@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block jumbotron %}
+	<h1>All boxes</h1>
+{% endblock %}
+
+{% block content %}
+	{% if box_list %}
+		<table class="table table-striped">
+			<tr>
+				<th>#</th>
+				<th>Tag</th>
+				<th>Storage</th>
+			</tr>
+		{% for box in box_list %}
+			<tr>
+				<td><a href={% url 'box:read' box.id%}>{{ box.id }}</a></td>
+				<td>{{box.tag}}</td>
+				<td>{{box.storage}}</td>
+			</tr>
+		{% endfor %}
+		</table>
+	{% else %}
+		<p>No boxes are available.</p>
+	{% endif %}
+	<p><a role="button" class="btn btn-lg btn-primary btn-block" href="{% url 'box:create' %}">Create a box</a></p>
+{% endblock %}
